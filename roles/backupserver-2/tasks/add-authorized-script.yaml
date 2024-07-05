@@ -1,14 +1,4 @@
 ---
-# - name: Copy the add-pub-auth-key.sh file to backupserver
-#   become: true
-#   become_user: backupuser
-#   copy:
-#     src: add-pub-auth-key.sh
-#     dest: ~/bin/
-#     owner: backupuser
-#     group: backupuser
-#     mode: u+x
-
 - name: Run the add-pub-auth-key.sh script
   become: true
   become_user: backupuser
