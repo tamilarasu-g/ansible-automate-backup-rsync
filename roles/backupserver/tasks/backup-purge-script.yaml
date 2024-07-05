@@ -1,0 +1,33 @@
+---
+- name: Copy the backup-purge-old.sh file
+  become: true
+  become_user: backupuser
+  copy:
+    src: files/backup-purge-old.sh
+    dest: /home/backupuser/bin
+    owner: backupuser
+    group: backupuser
+
+- name: Prevent permission issues for backupuser (chown)
+  cron:
+    name: chown-backupinbox-dir
+    minute: "50"
+    hour: "5"
+    user: root
+    job: "chown -R backupuser:backuplocalteam /backupinbox"
+
+- name: Prevent permission issues for backupuser (chmod)
+  cron:
+    name: chmod-backupinbox-dir
+    minute: "53"
+    hour: "5"
+    user: "root"
+    job: "chmod -R 770 /backupinbox"
+
+- name: Add the backup script to crontab
+  cron:
+    name: backup-purge-old.sh script
+    minute: "57"
+    hour: "5"
+    user: "backupuser"
+    job: "/home/backupuser/bin/backup-purge-old.sh"

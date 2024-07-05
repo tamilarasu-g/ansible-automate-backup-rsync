@@ -1,0 +1,15 @@
+---
+- name: Setup Backupserver
+  hosts: backupserver
+  roles:
+    - role: "roles/backupserver"
+
+- name: Setup Backupclients
+  hosts: backupclient
+  roles:
+    - role: "roles/backupclient"
+
+- name: Finishing backupserver process
+  hosts: backupserver
+  roles:
+    - role: "roles/backupserver-2"

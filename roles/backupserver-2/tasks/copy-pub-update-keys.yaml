@@ -1,0 +1,12 @@
+---
+- name: Copy the .pub keys to backupserver
+  become: true
+  become_user: backupuser
+  copy:
+    src: "{{item}}"
+    dest: ~/pubfiles
+    owner: backupuser
+    group: backupuser
+  with_fileglob:
+    - roles/backupclient/files/*.pub
+    

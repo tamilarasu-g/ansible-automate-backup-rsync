@@ -1,0 +1,4 @@
+---
+# tasks file for backupserver-2
+- import_tasks: copy-pub-update-keys.yaml
+- import_tasks: add-authorized-script.yaml

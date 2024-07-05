@@ -1,0 +1,19 @@
+---
+- name: Create the bin dir
+  file:
+    path: /root/bin
+    state: directory
+
+- name: Copy the backup-rsync.sh script
+  copy:
+    src: backup-rsync.sh
+    dest: /root/bin/
+    mode: u+x
+
+- name: Add the script to crontab
+  cron:
+    name: backup-rsync.sh script
+    minute: "55"
+    hour: "3"
+    user: root
+    job: "/root/bin/backup-rsync.sh"

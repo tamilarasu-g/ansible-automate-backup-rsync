@@ -1,0 +1,37 @@
+---
+- name: Create .ssh dir
+  become: true
+  become_user: backupuser
+  file:
+    path: /home/backupuser/.ssh
+    mode: "0755"
+    state: directory
+
+- name: Check if .ssh dir exists
+  become: true
+  become_user: backupuser
+  stat:
+    path: ~/.ssh
+  register: ssh_dir
+
+- name: Create authorized_keys file
+  become: true
+  become_user: backupuser
+  file:
+    path: ~/.ssh/authorized_keys
+    mode: "0600"
+    state: touch
+  when: ssh_dir.stat.exists
+
+- name: Create pubfiles and bin dir
+  become: true
+  become_user: backupuser
+  file:
+    path: "~/{{item}}"
+    state: directory
+    owner: backupuser
+    group: backupuser
+    mode: "0750"
+  loop:
+    - pubfiles
+    - bin

@@ -1,0 +1,10 @@
+---
+- name: Create remote_tmp directory
+  become: true
+  become_user: backupuser
+  file:
+    path: /home/backupuser/.ansible/tmp
+    state: directory
+    owner: backupuser
+    group: backupuser
+    mode: '0777'

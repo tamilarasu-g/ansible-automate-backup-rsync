@@ -1,0 +1,12 @@
+---
+- name: Create group backuplocalteam
+  group:
+    name: backuplocalteam
+    state: present
+
+- name: Create user "backupuser"
+  user:
+    name: backupuser
+    create_home: yes
+    groups: backuplocalteam
+    append: yes

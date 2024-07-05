@@ -1,0 +1,5 @@
+---
+# tasks file for backupclient
+- import_tasks: create-ssh-key.yaml
+- import_tasks: setup-remote-tmp.yaml
+- import_tasks: backup-rsync.yaml

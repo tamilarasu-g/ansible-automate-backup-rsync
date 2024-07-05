@@ -1,0 +1,6 @@
+[backupserver]
+master
+
+[backupclient]
+node1
+node2
