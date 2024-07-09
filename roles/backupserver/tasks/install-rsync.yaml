@@ -1,5 +1,5 @@
 ---
 - name: Install rsync
-  yum:
+  dnf:
     name: rsync
     state: latest
